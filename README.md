@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Luc4st1574/nexus-fire-ecommerce-engine/raw/main/readme/assests/Nexus%20Fire%20text%20logo.png" alt="Nexus Fire Logo" width="300" />
+  <img src="https://github.com/Luc4st1574/nexus-fire-ecommerce-engine/raw/main/readme/assests/Nexus%20Fire%20logo.png" alt="Nexus Fire Icon" width="150" />
   <br />
   <h1>Client Project Template</h1>
 </div>
@@ -17,26 +17,42 @@
 <ul>
   <li><strong>Node.js</strong> (v18 or higher)</li>
   <li><strong>Git</strong></li>
+  <li><strong>Firebase CLI</strong> (Optional, but recommended)</li>
 </ul>
 
 <hr />
 
 <h2>🚀 Initialization Workflow</h2>
-<p>This template includes an automated CLI tool to white-label the project. This process strips all "Nexus Fire" branding and configures the repository for the specific client.</p>
+<p>This template includes an automated CLI tool to white-label the project. Follow this specific order to ensure dependencies are loaded before configuration.</p>
 
 <h3>1. Clone the Template</h3>
 <p>Clone this repository to your local machine:</p>
 <pre><code>git clone https://github.com/Luc4st1574/nexus-fire-ecommerce-engine.git
 cd nexus-fire-ecommerce-engine</code></pre>
 
-<h3>2. Run the Setup Wizard 🧙‍♂️</h3>
-<p>Run the initialization command. This will guide you through the white-labeling process.</p>
+<h3>2. Install Dependencies</h3>
+<p>Install the necessary packages <strong>before</strong> running the setup wizard to ensure the scripting tools work correctly:</p>
+<pre><code>npm install</code></pre>
+
+<h3>3. Run the Setup Wizard 🧙‍♂️</h3>
+<p>Run the initialization command to configure the client environment:</p>
 <pre><code>npm run project:setup</code></pre>
 
-<p><strong>What this command does:</strong></p>
+<p><strong>The Wizard will perform these actions in order:</strong></p>
 <ol>
-  <li><strong>Client Configuration:</strong> Prompts you for the <strong>Business Name</strong> (e.g., "Kyber Tech").</li>
-  <li><strong>Directory Renaming:</strong> Renames the root project folder to match the business name (e.g., <code>./kyber-tech</code>).</li>
+  <li><strong>Firebase Connection (Priority):</strong>
+    <ul>
+      <li>Asks for the <strong>Firebase Project ID</strong> and <strong>API Keys</strong> immediately.</li>
+      <li>Automatically generates the <code>.env</code> file with the correct credentials.</li>
+      <li>Updates <code>firebase.json</code> with the new project alias.</li>
+    </ul>
+  </li>
+  <li><strong>Client Configuration:</strong>
+    <ul>
+      <li>Prompts for the <strong>Business Name</strong> (e.g., "Kyber Tech").</li>
+      <li>Renames the root project folder to match the business name (e.g., <code>./kyber-tech</code>).</li>
+    </ul>
+  </li>
   <li><strong>Git Reset:</strong>
     <ul>
       <li>Removes the existing <code>origin</code> remote (Nexus Fire).</li>
@@ -44,7 +60,6 @@ cd nexus-fire-ecommerce-engine</code></pre>
       <li>Initializes a fresh Git history for the client.</li>
     </ul>
   </li>
-  <li><strong>Dependency Install:</strong> Automatically runs <code>npm install</code> to set up the environment.</li>
   <li><strong>Self-Destruct & Cleanup:</strong>
     <ul>
       <li>Deletes "Nexus Fire" branding assets.</li>
@@ -53,12 +68,31 @@ cd nexus-fire-ecommerce-engine</code></pre>
   </li>
 </ol>
 
+<br />
+
+<div align="center">
+  <img src="https://github.com/Luc4st1574/nexus-fire-ecommerce-engine/raw/main/readme/assests/Nexus%20Fire%20text%20logo.png" alt="Nexus Fire Text Logo" width="300" />
+</div>
+
+<br />
+
 <hr />
 
-<h3>3. Manual Setup (Fallback)</h3>
+<h3>4. Manual Setup (Fallback)</h3>
 <p><em>Use this only if the automated script fails.</em></p>
 
 <ol>
+  <li>
+    <strong>Install Dependencies:</strong>
+    <pre><code>npm install</code></pre>
+  </li>
+  <li>
+    <strong>Firebase Config:</strong>
+    <ul>
+      <li>Rename <code>.env.example</code> to <code>.env</code>.</li>
+      <li>Paste the client's Firebase keys into the file.</li>
+    </ul>
+  </li>
   <li>
     <strong>Rename Folder:</strong> Manually change the folder name to the client's name.
   </li>
@@ -67,10 +101,6 @@ cd nexus-fire-ecommerce-engine</code></pre>
     <pre><code>rm -rf .git
 git init
 git remote add origin &lt;NEW_CLIENT_REPO_URL&gt;</code></pre>
-  </li>
-  <li>
-    <strong>Install Dependencies:</strong>
-    <pre><code>npm install</code></pre>
   </li>
   <li>
     <strong>Cleanup:</strong> Manually delete this README and the <code>readme/assests</code> folder.
@@ -116,6 +146,7 @@ git remote add origin &lt;NEW_CLIENT_REPO_URL&gt;</code></pre>
 ├── public/              # Static assets
 ├── src/
 │   ├── components/      # Reusable UI components
+│   ├── firebase/        # Firebase initialization & logic
 │   ├── layouts/         # Page layouts
 │   ├── pages/           # Application routes
 │   └── styles/          # Tailwind & Global styles
