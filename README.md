@@ -27,8 +27,10 @@
 
 <h3>1. Clone the Template</h3>
 <p>Clone this repository to your local machine:</p>
-<pre><code>git clone https://github.com/Luc4st1574/nexus-fire-ecommerce-engine.git
-cd nexus-fire-ecommerce-engine</code></pre>
+<pre><code>git clone https://github.com/Luc4st1574/nexus-fire-ecommerce-engine.git</code></pre>
+
+<h3>Go to the new folder</h3>
+<pre><code>cd nexus-fire-ecommerce-engine</code></pre>
 
 <h3>2. Install Dependencies</h3>
 <p>Install the necessary packages <strong>before</strong> running the setup wizard to ensure the scripting tools work correctly:</p>
