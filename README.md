@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Luc4st1574/nexus-fire-ecommerce-engine/raw/main/readme/assests/Nexus%20Fire%20logo.png" alt="Nexus Fire Icon" width="150" />
+  <img src="https://github.com/lucast1574/nexus-fire-ecommerce-engine/raw/main/readme/assets/Nexus%20Fire%20logo.png" alt="Nexus Fire Icon" width="150" />
   <br />
   <h1>Client Project Template</h1>
 </div>
@@ -27,7 +27,7 @@
 
 <h3>1. Clone the Template</h3>
 <p>Clone this repository to your local machine:</p>
-<pre><code>git clone https://github.com/Luc4st1574/nexus-fire-ecommerce-engine.git</code></pre>
+<pre><code>git clone https://github.com/lucast1574/nexus-fire-ecommerce-engine.git</code></pre>
 
 <h3>Go to the new folder</h3>
 <pre><code>cd nexus-fire-ecommerce-engine</code></pre>
@@ -73,7 +73,7 @@
 <br />
 
 <div align="center">
-  <img src="https://github.com/Luc4st1574/nexus-fire-ecommerce-engine/raw/main/readme/assests/Nexus%20Fire%20text%20logo.png" alt="Nexus Fire Text Logo" width="300" />
+  <img src="https://github.com/lucast1574/nexus-fire-ecommerce-engine/raw/main/readme/assets/Nexus%20Fire%20text%20logo.png" alt="Nexus Fire Text Logo" width="300" />
 </div>
 
 <br />

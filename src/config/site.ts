@@ -1,16 +1,31 @@
+import { Inter } from "next/font/google";
+
+// 1. Initialize the Font
+const fontSans = Inter({
+    subsets: ["latin"],
+    variable: "--font-sans",
+    weight: ["400", "500", "600", "700", "800", "900"],
+});
+
 export const siteConfig = {
-    name: "Nexus Fire Engine", // Change this for the client
+    name: "Nexus Fire Engine",
     description: "Master Template for Client Apps",
+    location: "Global",
+
+    // 🔠 Global Typography Config
+    // This exports the font so the Layout can use it automatically
+    fonts: {
+        sans: fontSans,
+    },
     
     // 🎨 Assets Configuration
-    // To change the logo, just upload the new file to /public and update this string.
     logo: {
-        icon: "/assets/logo-icon.png", // The small square logo
-        text: "/assets/logo-text.png", // The full text logo
+        icon: "/assets/logo-icon.png",
+        text: "/assets/logo-text.png",
         alt: "Brand Logo",
     },
 
-    // 🔗 Social Links (Optional, good for footers)
+    // 🔗 Social Links
     links: {
         x: "https://x.com/nexusfire",
         facebook: "https://facebook.com/nexusfire",
