@@ -1,22 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import { useTheme } from "next-themes";
 import { 
+  Moon, 
+  Sun, 
   Facebook, 
   Instagram, 
   Twitter, 
   Phone, 
   ArrowRight
-} from "lucide-react"; // ✅ Only Lucide icons
+} from "lucide-react"; 
 import { siteConfig } from "@/config/site";
 
-// Dynamic Import for Theme Toggle to avoid hydration mismatch
-const ThemeToggle = dynamic(() => import("./ThemeToggle"), {
-  ssr: false,
-  loading: () => <div className="h-8 w-14 rounded-full bg-secondary-foreground/5" />,
-});
+// --- Components ---
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch by only rendering after mount
+  useEffect(() => {
+    // Schedule setMounted asynchronously to avoid cascading renders
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  // Render skeleton/placeholder during SSR (matches original loading prop)
+  if (!mounted) {
+    return <div className="h-8 w-14 rounded-full bg-secondary-foreground/5" />;
+  }
+
+  return (
+    <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="group relative flex h-8 w-14 items-center rounded-full bg-secondary-foreground/10 p-1 transition-colors hover:bg-secondary-foreground/20"
+      aria-label="Toggle Dark Mode"
+    >
+      <span
+        className={`flex h-6 w-6 transform items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition-transform duration-300 ${
+          theme === "dark" ? "translate-x-6" : "translate-x-0"
+        }`}
+      >
+        {theme === "dark" ? <Moon className="h-3 w-3" /> : <Sun className="h-3 w-3" />}
+      </span>
+    </button>
+  );
+}
+
+function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+  return (
+    <a 
+      href={href} 
+      aria-label={label}
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="p-2.5 rounded-full bg-secondary-foreground/5 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+    >
+      {icon}
+    </a>
+  );
+}
+
+// --- Main Footer Component ---
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -77,7 +124,6 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <div className="flex items-center gap-4">
-              {/* ✅ Using strictly Lucide Icons */}
               <SocialLink label="Twitter" href={siteConfig.links?.x || "#"} icon={<Twitter className="h-5 w-5" />} />
               <SocialLink label="Facebook" href={siteConfig.links?.facebook || "#"} icon={<Facebook className="h-5 w-5" />} />
               <SocialLink label="Instagram" href={siteConfig.links?.instagram || "#"} icon={<Instagram className="h-5 w-5" />} />
@@ -89,19 +135,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
-  return (
-    <a 
-      href={href} 
-      aria-label={label}
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="p-2.5 rounded-full bg-secondary-foreground/5 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-    >
-      {icon}
-    </a>
   );
 }
